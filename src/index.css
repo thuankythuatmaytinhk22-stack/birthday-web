@@ -1,10 +1,201 @@
+@import "tailwindcss";
+
+/* ===== RESET & BASE ===== */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family: "Segoe UI", "Quicksand", sans-serif;
-  background: linear-gradient(135deg, #ffe0f0 0%, #e0f0ff 50%, #fff5e0 100%);
+  font-family: 'Inter', sans-serif;
+  background-color: #FFF8E7;
+  color: #0F4C3A;
   min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== APP LAYOUT ===== */
+.app {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #0F4C3A;
+  margin-bottom: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: #4a7c6a;
+  font-weight: 500;
+}
+
+/* ===== GRID ẢNH ===== */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+/* ===== PHOTO CARD ===== */
+.photo-card {
+  background: white;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.photo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== ẢNH TRONG CARD (SỬA LỖI XOAY NGANG) ===== */
+.photo-card img {
+  width: 100%;
+  height: 300px;              /* Chiều cao cố định */
+  object-fit: cover;          /* Cắt ảnh cho vừa khung */
+  object-position: center;    /* Căn giữa ảnh */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.photo-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ===== NỘI DUNG CARD ===== */
+.photo-card .card-content {
+  padding: 1.5rem;
+}
+
+.photo-card .card-content h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0F4C3A;
+  margin-bottom: 0.5rem;
+}
+
+.photo-card .card-content p {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+/* ===== MODAL CHI TIẾT ===== */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  z-index: 10000;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 2rem;
+  padding: 2rem;
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  text-align: center;
+  animation: slideUp 0.4s ease;
+}
+
+/* SỬA LỖI ẢNH XOAY TRONG MODAL */
+.modal-content img {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;        /* Giữ nguyên tỉ lệ ảnh */
+  border-radius: 1rem;
+  margin-bottom: 1.5rem;
+  background: #f3f4f6;
+}
+
+.modal-content h2 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #0F4C3A;
+  margin-bottom: 1rem;
+}
+
+.modal-content p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 1.5rem;
+  white-space: pre-line;      /* Giữ xuống dòng trong content */
+}
+
+.modal-content button {
+  background: #F4C542;
+  color: #0F4C3A;
+  font-weight: 700;
+  padding: 0.75rem 2rem;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.modal-content button:hover {
+  background: #e0b334;
+  transform: scale(1.05);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .title {
+    font-size: 1.75rem;
+  }
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .photo-card img {
+    height: 250px;
+  }
 }
