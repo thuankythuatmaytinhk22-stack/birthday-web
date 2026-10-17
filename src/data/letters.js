@@ -12,16 +12,16 @@ Chúc Thảo Nguyên tuổi mới thật rực rỡ và thành công!`,
   {
     id: 2,
     image: "/photo2.jpg",
-    title: "Hành trình rực rỡ 🌸",
+    title: "Gửi Thảo Nguyên 🌸",
     preview: "Click để mở thư...",
-    content: `Mong rằng những cuộc thi, những dự định, những ấp ủ của Thảo Nguyên sẽ được hoàn thành tốt đẹp.
+    content: `Chúc cho những cuộc thi, những dự định, những ấp ủ của Thảo Nguyên sẽ được hoàn thành tốt đẹp.
 
 Chúc cho hành trình phía trước của Nguyên luôn ngập tràn niềm vui và thành công! ✨`,
   },
   {
     id: 3,
     image: "/photo3.jpg",
-    title: "Cuộc sống mong ước",
+    title: "Gửi Thảo Nguyên",
     preview: "Click để mở thư...",
     content: `Happy Birthday! 🎂
 
@@ -30,7 +30,7 @@ Chúc Nguyên một ngày sinh nhật thật ấm áp bên gia đình và bạn 
   {
     id: 4,
     image: "/photo4.jpg",
-    title: "Món quà nhỏ 🎁",
+    title: "Gửi Thảo Nguyên 🎁",
     preview: "Click để mở thư...",
     content: `Web là món quà đó kkk 🥳`,
   },
