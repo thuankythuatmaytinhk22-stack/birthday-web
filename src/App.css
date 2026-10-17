@@ -1,0 +1,39 @@
+.app {
+  min-height: 100vh;
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.title {
+  font-size: 3rem;
+  background: linear-gradient(90deg, #ff6b9d, #ffd93d, #6bcb77);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: pulse 2s infinite;
+}
+.subtitle {
+  color: #666;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  width: 100%;
+}
+.footer {
+  margin-top: 60px;
+  color: #999;
+  font-size: 0.9rem;
+}

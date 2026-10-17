@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", "Quicksand", sans-serif;
+  background: linear-gradient(135deg, #ffe0f0 0%, #e0f0ff 50%, #fff5e0 100%);
+  min-height: 100vh;
+}
