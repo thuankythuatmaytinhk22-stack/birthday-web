@@ -25,7 +25,7 @@ export default function App() {
 
         <h1 className="title">
           <span className="title-emoji">🎊</span>
-          Chúc mừng Thảo Nguyên
+          Chúc mừng sinh nhật Thảo Nguyên
           <span className="title-emoji">🎊</span>
         </h1>
         
