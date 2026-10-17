@@ -189,12 +189,12 @@ body {
   box-shadow: 0 12px 32px rgba(255, 107, 157, 0.25);
 }
 
-/* ===== ẢNH TRONG CARD (SỬA LỖI XOAY NGANG) ===== */
+/* ===== ẢNH TRONG CARD ===== */
 .photo-card img {
   width: 100%;
   height: 320px;
   object-fit: cover;
-  object-position: center top;    /* Ưu tiên hiển thị phần đầu ảnh */
+  object-position: center top;
   display: block;
   transition: transform 0.5s ease;
   background: #f3f4f6;
