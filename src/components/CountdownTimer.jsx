@@ -15,32 +15,36 @@ export default function CountdownTimer() {
 
     const startCountdown = async () => {
       try {
-        // Gọi API lấy giờ chuẩn của Việt Nam (không phụ thuộc giờ máy)
-        const res = await fetch('https://time.now/developer/api/timezone/Asia/Ho_Chi_Minh');
+        // Lấy giờ chuẩn của Việt Nam
+        const res = await fetch('https://worldtimeapi.org/api/timezone/Asia/Ho_Chi_Minh');
         const data = await res.json();
         
-        // Lấy thời gian hiện tại từ API (định dạng ISO)
+        // Giờ hiện tại theo API (đã là giờ VN)
         const now = new Date(data.datetime);
         const currentYear = now.getFullYear();
 
-        // Cài đặt giờ sinh nhật: 19:00 ngày 18/10
-        const BIRTHDAY_HOUR = 19;
+        // Mốc sinh nhật: 00:00 ngày 18/10
+        const BIRTHDAY_HOUR = 0; 
         let target = new Date(currentYear, 9, 18, BIRTHDAY_HOUR, 0, 0);
 
-        // Nếu đã qua sinh nhật năm nay, chuyển sang năm sau
-        if (now > target) {
+        // Nếu đã qua 0h ngày 18/10, chuyển sang năm sau
+        if (now >= target) {
           target = new Date(currentYear + 1, 9, 18, BIRTHDAY_HOUR, 0, 0);
         }
 
+        const startTime = Date.now();
+
         const updateTime = () => {
-          // Mỗi giây, cộng thêm 1 giây vào giờ hiện tại (vì không gọi API liên tục)
-          const current = new Date(now.getTime() + (Date.now() - startTime));
+          // Tính thời gian đã trôi qua kể từ lúc gọi API
+          const elapsed = Date.now() - startTime;
+          const current = new Date(now.getTime() + elapsed);
           
           const diff = target - current;
 
-          // Kiểm tra xem đã tới ngày sinh nhật chưa
-          const isToday = current.getDate() === 18 && current.getMonth() === 9 && current.getHours() >= BIRTHDAY_HOUR;
+          // Kiểm tra xem hôm nay có phải ngày 18/10 không
+          const isToday = current.getDate() === 18 && current.getMonth() === 9;
 
+          // Nếu đã tới ngày sinh nhật hoặc đã qua mốc
           if (diff <= 0 || isToday) {
             setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isToday: true });
             return;
@@ -54,26 +58,24 @@ export default function CountdownTimer() {
           setTimeLeft({ days, hours, minutes, seconds, isToday: false });
         };
 
-        const startTime = Date.now();
         updateTime();
         setLoading(false);
-        
-        // Cập nhật mỗi giây
         interval = setInterval(updateTime, 1000);
 
       } catch (error) {
         console.error("Lỗi lấy giờ từ API, dùng giờ máy:", error);
-        // Fallback: Nếu API lỗi, dùng giờ máy (có thể sai)
+        
+        // Fallback nếu API lỗi: Dùng giờ máy
         const now = new Date();
         const currentYear = now.getFullYear();
-        const BIRTHDAY_HOUR = 19;
+        const BIRTHDAY_HOUR = 0;
         let target = new Date(currentYear, 9, 18, BIRTHDAY_HOUR, 0, 0);
-        if (now > target) target = new Date(currentYear + 1, 9, 18, BIRTHDAY_HOUR, 0, 0);
+        if (now >= target) target = new Date(currentYear + 1, 9, 18, BIRTHDAY_HOUR, 0, 0);
 
         const updateTimeFallback = () => {
           const current = new Date();
           const diff = target - current;
-          const isToday = current.getDate() === 18 && current.getMonth() === 9 && current.getHours() >= BIRTHDAY_HOUR;
+          const isToday = current.getDate() === 18 && current.getMonth() === 9;
           
           if (diff <= 0 || isToday) {
             setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isToday: true });
