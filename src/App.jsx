@@ -12,18 +12,17 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* Hiệu ứng nền */}
       <Balloons />
       <FloatingIcons />
       <Confetti />
 
       <header className="header">
-        <div className="header-icons-top">
-          <span className="header-icon">🎉</span>
-          <span className="header-icon">🎂</span>
-          <span className="header-icon">🎈</span>
+        {/* Khối hiển thị số 20 tuổi */}
+        <div className="age-highlight">
+          <span className="age-number">20</span>
+          <span className="age-text">TUỔI</span>
         </div>
-        
+
         <h1 className="title">
           <span className="title-emoji">🎊</span>
           Chúc mừng Thảo Nguyên
@@ -32,27 +31,28 @@ export default function App() {
         
         <p className="subtitle">✨ Click vào từng bức ảnh để xem lời chúc ✨</p>
 
-        {/* Đồng hồ đếm ngược */}
         <CountdownTimer />
       </header>
 
-      <main className="grid">
-        {letters.map((letter) => (
-          <PhotoCard
-            key={letter.id}
-            letter={letter}
-            onClick={() => setSelectedLetter(letter)}
-          />
-        ))}
+      {/* Khung treo ảnh */}
+      <main className="gallery-container">
+        <div className="gallery-wire"></div>
+        <div className="grid">
+          {letters.map((letter) => (
+            <PhotoCard
+              key={letter.id}
+              letter={letter}
+              onClick={() => setSelectedLetter(letter)}
+            />
+          ))}
+        </div>
       </main>
 
-      {/* Footer icons (Đã xóa chữ "Made with love") */}
       <footer className="footer">
         <span className="footer-icon">💖</span>
         <span className="footer-icon">💖</span>
       </footer>
 
-      {/* Modal hiển thị chi tiết khi click */}
       {selectedLetter && (
         <div className="modal" onClick={() => setSelectedLetter(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
