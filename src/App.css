@@ -1,39 +1,69 @@
-.app {
-  min-height: 100vh;
-  padding: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.title {
-  font-size: 3rem;
-  background: linear-gradient(90deg, #ff6b9d, #ffd93d, #6bcb77);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: pulse 2s infinite;
-}
-.subtitle {
-  color: #666;
-  margin-top: 10px;
-  font-size: 1.1rem;
-}
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 30px;
-  max-width: 1100px;
-  width: 100%;
-}
-.footer {
-  margin-top: 60px;
-  color: #999;
-  font-size: 0.9rem;
+import { useState } from 'react';
+import { letters } from './data/letters';
+import PhotoCard from './components/PhotoCard';
+import Confetti from './components/Confetti';
+import CountdownTimer from './components/CountdownTimer';
+import Balloons from './components/Balloons';
+import FloatingIcons from './components/FloatingIcons';
+import './App.css';
+
+export default function App() {
+  const [selectedLetter, setSelectedLetter] = useState(null);
+
+  return (
+    <div className="app">
+      {/* Hiệu ứng nền */}
+      <Balloons />
+      <FloatingIcons />
+      <Confetti />
+
+      <header className="header">
+        <div className="header-icons-top">
+          <span className="header-icon">🎉</span>
+          <span className="header-icon">🎂</span>
+          <span className="header-icon">🎈</span>
+        </div>
+        
+        <h1 className="title">
+          <span className="title-emoji">🎊</span>
+          Chúc mừng Thảo Nguyên
+          <span className="title-emoji">🎊</span>
+        </h1>
+        
+        <p className="subtitle">✨ Click vào từng bức ảnh để xem lời chúc ✨</p>
+
+        {/* Đồng hồ đếm ngược */}
+        <CountdownTimer />
+      </header>
+
+      <main className="grid">
+        {letters.map((letter) => (
+          <PhotoCard
+            key={letter.id}
+            letter={letter}
+            onClick={() => setSelectedLetter(letter)}
+          />
+        ))}
+      </main>
+
+      {/* Footer icons */}
+      <footer className="footer">
+        <span className="footer-icon">💖</span>
+        <span className="footer-text">Made with love</span>
+        <span className="footer-icon">💖</span>
+      </footer>
+
+      {/* Modal hiển thị chi tiết khi click */}
+      {selectedLetter && (
+        <div className="modal" onClick={() => setSelectedLetter(null)}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <img src={selectedLetter.image} alt={selectedLetter.title} />
+            <h2>{selectedLetter.title}</h2>
+            <p>{selectedLetter.content}</p>
+            <button onClick={() => setSelectedLetter(null)}>Đóng 💕</button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
 }

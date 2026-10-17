@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { letters } from './data/letters';
 import PhotoCard from './components/PhotoCard';
 import Confetti from './components/Confetti';
+import CountdownTimer from './components/CountdownTimer';
+import Balloons from './components/Balloons';
+import FloatingIcons from './components/FloatingIcons';
 import './App.css';
 
 export default function App() {
@@ -9,12 +12,28 @@ export default function App() {
 
   return (
     <div className="app">
-      {/* Hiệu ứng pháo giấy bắn liên tục */}
+      {/* Hiệu ứng nền */}
+      <Balloons />
+      <FloatingIcons />
       <Confetti />
-      
+
       <header className="header">
-        <h1 className="title">🎉 Chúc mừng Thảo Nguyên 🎉</h1>
-        <p className="subtitle">Click vào từng bức ảnh để xem lời chúc</p>
+        <div className="header-icons-top">
+          <span className="header-icon">🎉</span>
+          <span className="header-icon">🎂</span>
+          <span className="header-icon">🎈</span>
+        </div>
+        
+        <h1 className="title">
+          <span className="title-emoji">🎊</span>
+          Chúc mừng Thảo Nguyên
+          <span className="title-emoji">🎊</span>
+        </h1>
+        
+        <p className="subtitle">✨ Click vào từng bức ảnh để xem lời chúc ✨</p>
+
+        {/* Đồng hồ đếm ngược */}
+        <CountdownTimer />
       </header>
 
       <main className="grid">
@@ -27,6 +46,13 @@ export default function App() {
         ))}
       </main>
 
+      {/* Footer icons */}
+      <footer className="footer">
+        <span className="footer-icon">💖</span>
+        <span className="footer-text">Made with love</span>
+        <span className="footer-icon">💖</span>
+      </footer>
+
       {/* Modal hiển thị chi tiết khi click */}
       {selectedLetter && (
         <div className="modal" onClick={() => setSelectedLetter(null)}>
@@ -34,7 +60,7 @@ export default function App() {
             <img src={selectedLetter.image} alt={selectedLetter.title} />
             <h2>{selectedLetter.title}</h2>
             <p>{selectedLetter.content}</p>
-            <button onClick={() => setSelectedLetter(null)}>Đóng</button>
+            <button onClick={() => setSelectedLetter(null)}>Đóng 💕</button>
           </div>
         </div>
       )}
