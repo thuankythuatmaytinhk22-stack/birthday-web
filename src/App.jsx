@@ -46,10 +46,9 @@ export default function App() {
         ))}
       </main>
 
-      {/* Footer icons */}
+      {/* Footer icons (Đã xóa chữ "Made with love") */}
       <footer className="footer">
         <span className="footer-icon">💖</span>
-        <span className="footer-text">Made with love</span>
         <span className="footer-icon">💖</span>
       </footer>
 
