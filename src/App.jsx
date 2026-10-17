@@ -29,7 +29,7 @@ export default function App() {
           <span className="title-emoji">🎊</span>
         </h1>
         
-        <p className="subtitle">✨ ✨</p>
+        
 
         <CountdownTimer />
       </header>
